@@ -213,10 +213,10 @@ local function run(msg, matches)
           return
         end
         if not is_admin(msg) and is_momod2(matches[2], msg.to.id) then
-          return "you can't kick mods/owner/admins"
+          return "Stupid You Can't Kick mods/owner/admins❌"
         end
         if tonumber(matches[2]) == tonumber(msg.from.id) then
-          return "You can't kick your self !"
+          return "Joking?You Cant Kick Your Self❌"
         end
         local name = user_print_name(msg.from)
         savelog(msg.to.id, name.." ["..msg.from.id.."] kicked user ".. matches[2])
@@ -247,7 +247,7 @@ local function run(msg, matches)
          return false 
         end
         banall_user(targetuser)
-        return 'User ['..user_id..' ] globally banned'
+        return 'Dear Admin ['..user_id..' ] Globally Baned✅'
       else
         local member = string.gsub(matches[2], '@', '')
         local get_cmd = 'banall'
@@ -264,7 +264,7 @@ local function run(msg, matches)
           return false 
         end
         unbanall_user(user_id)
-        return 'User ['..user_id..' ] removed from global ban list'
+        return 'Dear Admin ['..user_id..' ] Has Been Removed From Globally Ban✅'
       else
         local member = string.gsub(matches[2], '@', '')
         local get_cmd = 'unbanall'
