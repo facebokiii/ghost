@@ -27,7 +27,7 @@ local function check_member(cb_extra, success, result)
       end
       data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
       save_data(_config.moderation.data, data)
-      return send_large_msg(receiver, 'You have been promoted as The owner.')
+      return send_large_msg(receiver, 'Now You Are Owner✅')
     end
   end
 end
@@ -42,7 +42,7 @@ end
 
 local function show_group_settingsmod(msg, data, target)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "Moderators Only❌"
   end
   local data = load_data(_config.moderation.data)
     if data[tostring(msg.to.id)] then
@@ -78,11 +78,11 @@ local function get_description(msg, data)
 end
 local function lock_group_arabic(msg, data, target)
   if not is_momod(msg) then
-    return "For moderators only!"
+    return "For moderators only"
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'yes' then
-    return 'Arabic is already locked'
+    return 'Arabic is Already Locked✅'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
@@ -110,12 +110,12 @@ local function lock_group_namemod(msg, data, target)
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'yes' then
-    return 'Group name is already locked'
+    return 'Group name is already locked✅'
   else
     data[tostring(target)]['settings']['lock_name'] = 'yes'
     save_data(_config.moderation.data, data)
     rename_chat('chat#id'..target, group_name_set, ok_cb, false)
-    return 'Group name has been locked'
+    return 'Group name has been locked✅'
   end
 end
 local function unlock_group_namemod(msg, data, target)
@@ -125,11 +125,11 @@ local function unlock_group_namemod(msg, data, target)
   local group_name_set = data[tostring(target)]['settings']['set_name']
   local group_name_lock = data[tostring(target)]['settings']['lock_name']
   if group_name_lock == 'no' then
-    return 'Group name is already unlocked'
+    return 'Group name is already unlocked✅'
   else
     data[tostring(target)]['settings']['lock_name'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group name has been unlocked'
+    return 'Group name has been unlocked✅'
   end
 end
 local function lock_group_floodmod(msg, data, target)
@@ -138,11 +138,11 @@ local function lock_group_floodmod(msg, data, target)
   end
   local group_flood_lock = data[tostring(target)]['settings']['flood']
   if group_flood_lock == 'yes' then
-    return 'Group flood is locked'
+    return 'Group flood is locked✅'
   else
     data[tostring(target)]['settings']['flood'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Group flood has been locked'
+    return 'Group flood has been locked I Will Fuck Spammers✅'
   end
 end
 
@@ -156,7 +156,7 @@ local function unlock_group_floodmod(msg, data, target)
   else
     data[tostring(target)]['settings']['flood'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group flood has been unlocked'
+    return 'Group flood has been unlocked✅'
   end
 end
 
@@ -166,12 +166,12 @@ local function lock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'yes' then
-    return 'Group members are already locked'
+    return 'Group members are already locked✅'
   else
     data[tostring(target)]['settings']['lock_member'] = 'yes'
     save_data(_config.moderation.data, data)
   end
-  return 'Group members has been locked'
+  return 'Group members has been locked✅'
 end
 
 local function unlock_group_membermod(msg, data, target)
@@ -180,11 +180,11 @@ local function unlock_group_membermod(msg, data, target)
   end
   local group_member_lock = data[tostring(target)]['settings']['lock_member']
   if group_member_lock == 'no' then
-    return 'Group members are not locked'
+    return 'Group members are not locked✅'
   else
     data[tostring(target)]['settings']['lock_member'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group members has been unlocked'
+    return 'Group members has been unlocked✅'
   end
 end
 
@@ -194,11 +194,11 @@ local function unlock_group_photomod(msg, data, target)
   end
   local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
   if group_photo_lock == 'no' then
-    return 'Group photo is not locked'
+    return 'Group photo is not locked✅'
   else
     data[tostring(target)]['settings']['lock_photo'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Group photo has been unlocked'
+    return 'Group photo has been unlocked✅'
   end
 end
 
@@ -224,7 +224,7 @@ local function modadd(msg)
   end
   data[tostring(groups)][tostring(msg.to.id)] = msg.to.id
   save_data(_config.moderation.data, data)
-  return 'Group has been added.'
+  return 'Group has been added.✅'
 end
 local function get_rules(msg, data)
   local data_cat = 'rules'
@@ -263,11 +263,11 @@ local function promote(receiver, member_username, member_id)
     return send_large_msg(receiver, 'Group is not added.')
   end
   if data[group]['moderators'][tostring(member_id)] then
-    return send_large_msg(receiver, member_username..' is already a moderator.')
+    return send_large_msg(receiver, member_username..' is already a moderator.✅')
   end
   data[group]['moderators'][tostring(member_id)] = member_username
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been promoted.')
+  return send_large_msg(receiver, '@'..member_username..' has been promoted.✅')
 end
 
 local function demote(receiver, member_username, member_id)
@@ -281,7 +281,7 @@ local function demote(receiver, member_username, member_id)
   end
   data[group]['moderators'][tostring(member_id)] = nil
   save_data(_config.moderation.data, data)
-  return send_large_msg(receiver, '@'..member_username..' has been demoted.')
+  return send_large_msg(receiver, '@'..member_username..' has been demoted.✅')
 end
 
 local function username_id(cb_extra, success, result)
@@ -354,7 +354,7 @@ local function run(msg, matches)
     end
   end
   if matches[1] == 'add' then
-    print("group "..msg.to.print_name.."("..msg.to.id..") added")
+    print("group "..msg.to.print_name.."("..msg.to.id..") added✅")
     return modadd(msg)
   end
   if matches[1] == 'chat_created' and msg.from.id == 0 then
@@ -387,7 +387,7 @@ local function run(msg, matches)
         return false
       end
       local rules = data[tostring(msg.to.id)][data_cat]
-      local rules = 'Welcome to "' .. string.gsub(msg.to.print_name, '_', ' ') ..'" this group has rules that you should follow:\n'..rules
+      local rules = 'HI Dear Welcome! "' .. string.gsub(msg.to.print_name, '_', ' ') ..'" Rules that you should follow:\n'..rules
       
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] deleted user  "..msg.action.user.id)
       send_large_msg(receiver, rules)
@@ -499,13 +499,13 @@ local function run(msg, matches)
       local to_rename = 'chat#id'..msg.to.id
       rename_chat(to_rename, group_name_set, ok_cb, false)
       
-      savelog(msg.to.id, "Group { "..msg.to.print_name.." }  name changed to [ "..new_name.." ] by "..name_log.." ["..msg.from.id.."]")
+      savelog(msg.to.id, "Group { "..msg.to.print_name.." }  Name Changed To [ "..new_name.." ] By "..name_log.." ["..msg.from.id.."]")
     end
   
     if matches[1] == 'setphoto' and is_momod(msg) then
       data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
       save_data(_config.moderation.data, data)
-      return 'Please send me new group photo now'
+      return 'Please send me new group photo now✅'
     end
 
     if matches[1] == 'promote' and matches[2] then
@@ -626,7 +626,7 @@ local function run(msg, matches)
         return "Create a link using /newlink first !"
       end
        savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group link ["..group_link.."]")
-      return "Group link:\n"..group_link
+      return "I've Generated A group link:\n"..group_link
     end
     if matches[1] == 'setowner' then
       if not is_owner(msg) then
@@ -635,13 +635,13 @@ local function run(msg, matches)
       data[tostring(msg.to.id)]['set_owner'] = matches[2]
       save_data(_config.moderation.data, data)
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] set ["..matches[2].."] as owner")
-      local text = matches[2].." added as owner"
+      local text = matches[2].." added as owner✅"
       return text
     end
     if matches[1] == 'owner' then
       local group_owner = data[tostring(msg.to.id)]['set_owner']
       if not group_owner then 
-        return "no owner,ask admins in support groups to set owner for your group"
+        return "no owner,ask @Thisisarman Or Others in support groups to set owner for your group✅"
       end
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] used /owner")
       return "Group owner is ["..group_owner..']'
@@ -653,7 +653,7 @@ local function run(msg, matches)
       end
       data[tostring(matches[2])]['set_owner'] = matches[3]
       save_data(_config.moderation.data, data)
-      local text = matches[3].." added as owner"
+      local text = matches[3].." added as owner✅"
       send_large_msg(receiver, text)
       return
     end
