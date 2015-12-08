@@ -86,7 +86,7 @@ local function lock_group_arabic(msg, data, target)
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'yes'
     save_data(_config.moderation.data, data)
-    return 'Arabic has been locked'
+    return 'Arabic has been locked✅'
   end
 end
 
@@ -96,11 +96,11 @@ local function unlock_group_arabic(msg, data, target)
   end
   local group_arabic_lock = data[tostring(target)]['settings']['lock_arabic']
   if group_arabic_lock == 'no' then
-    return 'Arabic is already unlocked'
+    return 'Arabic is already unlocked✅'
   else
     data[tostring(target)]['settings']['lock_arabic'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'Arabic has been unlocked'
+    return 'Arabic has been unlocked✅'
   end
 end
 local function lock_group_namemod(msg, data, target)
